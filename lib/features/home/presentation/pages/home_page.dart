@@ -1,3 +1,6 @@
+import 'package:cards/features/home/presentation/widgets/card_widget.dart';
+import 'package:cards/features/home/presentation/widgets/scratch_widget.dart';
+
 import '../widgets/app_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -11,6 +14,8 @@ class HomePage extends StatelessWidget {
       appBar: AppBarWidget(),
       body: Column(
         children: [
+          GlassHover(),
+          ScratchWidget(),
           Text('HomePage', style: TextStyle(fontSize: 20)),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
