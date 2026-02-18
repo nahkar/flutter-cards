@@ -23,9 +23,9 @@ class HomePage extends StatelessWidget {
               foregroundColor: Colors.black,
             ),
             onPressed: () {
-              context.push('/profile');
+              context.push('/movie_list');
             },
-            child: Text('Go to Cards Page'),
+            child: Text('Go to Movie List'),
           ),
         ],
       ),
