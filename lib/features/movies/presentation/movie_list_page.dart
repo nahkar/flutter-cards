@@ -1,16 +1,18 @@
-import 'package:cards/features/movies/data/datasources/movies_mock_datasource.dart';
+import 'package:cards/features/movies/data/datasources/movies_remote_datasource.dart';
 import 'package:cards/features/movies/data/repositories/movies_repository_impl.dart';
 import 'package:cards/features/movies/domain/entities/movie.dart';
 import 'package:cards/features/movies/domain/usecases/get_movies.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:go_router/go_router.dart';
+import 'package:http/http.dart' as http;
 
 class MovieListPage extends StatelessWidget {
   const MovieListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final datasource = MoviesMockDatasource();
+    final datasource = MoviesRemoteDatasource(http.Client());
     final repository = MoviesRepositoryImpl(datasource);
     final getMovies = GetMovies(repository);
 
@@ -43,10 +45,18 @@ class MovieListPage extends StatelessWidget {
                 final movie = movies[index];
 
                 return Card(
-                  child: ListTile(
-                    title: Text(movie.title),
-                    subtitle: Text(
-                      '${movie.releaseDate.year} • Rating: ${movie.rating}',
+                  child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          movie.name,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        const SizedBox(height: 8),
+                        Html(data: movie.summary),
+                      ],
                     ),
                   ),
                 );

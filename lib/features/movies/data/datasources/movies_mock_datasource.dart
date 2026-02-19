@@ -8,27 +8,18 @@ class MoviesMockDatasource implements MoviesDatasource {
     return [
       MovieModel(
         id: 1,
-        title: 'Interstellar',
-        overview: 'Overview 1',
-        posterPath: 'posterPath 1',
-        rating: 5.0,
-        releaseDate: DateTime.now(),
+        name: 'Interstellar',
+        summary: 'Overview 1',
       ),
       MovieModel(
         id: 2,
-        title: 'Inception',
-        overview: 'Overview 2',
-        posterPath: 'posterPath 2',
-        rating: 4.5,
-        releaseDate: DateTime.now(),
+        name: 'Inception',
+        summary: 'Overview 2',
       ),
       MovieModel(
         id: 3,
-        title: 'The Dark Knight',
-        overview: 'Overview 3',
-        posterPath: 'posterPath 3',
-        rating: 4.0,
-        releaseDate: DateTime.now(),
+        name: 'The Dark Knight',
+        summary: 'Overview 3',
       ),
     ];
   }
