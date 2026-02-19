@@ -1,8 +1,9 @@
 import 'package:cards/features/movies/data/datasources/movies_mock_datasource.dart';
-import 'package:cards/features/movies/data/models/movie_model.dart';
+import 'package:cards/features/movies/data/repositories/movies_repository_impl.dart';
+import 'package:cards/features/movies/domain/entities/movie.dart';
+import 'package:cards/features/movies/domain/usecases/get_movies.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 
 class MovieListPage extends StatelessWidget {
   const MovieListPage({super.key});
@@ -10,7 +11,10 @@ class MovieListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final datasource = MoviesMockDatasource();
-     return Scaffold(
+    final repository = MoviesRepositoryImpl(datasource);
+    final getMovies = GetMovies(repository);
+
+    return Scaffold(
       appBar: AppBar(
         title: const Text('Movie List Page'),
         leading: IconButton(
@@ -19,8 +23,8 @@ class MovieListPage extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: FutureBuilder<List<MovieModel>>(
-          future: datasource.getMovies(),
+        child: FutureBuilder<List<Movie>>(
+          future: getMovies(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());

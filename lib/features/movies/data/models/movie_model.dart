@@ -1,13 +1,20 @@
 import 'package:cards/features/movies/domain/entities/movie.dart';
 
-class MovieModel extends Movie {
+class MovieModel {
+  final int id;
+  final String title;
+  final String overview;
+  final String posterPath;
+  final double rating;
+  final DateTime releaseDate;
+
   const MovieModel({
-    required super.id,
-    required super.title,
-    required super.overview,
-    required super.posterPath,
-    required super.rating,
-    required super.releaseDate,
+    required this.id,
+    required this.title,
+    required this.overview,
+    required this.posterPath,
+    required this.rating,
+    required this.releaseDate,
   });
 
   factory MovieModel.fromJson(Map<String, dynamic> json) {
@@ -21,14 +28,25 @@ class MovieModel extends Movie {
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'title': title,
-      'overview': overview,
-      'poster_path': posterPath,
-      'vote_average': rating,
-      'release_date': releaseDate.toIso8601String(),
-    };
+  Movie toEntity() {
+    return Movie(
+      id: id,
+      title: title,
+      overview: overview,
+      posterPath: posterPath,
+      rating: rating,
+      releaseDate: releaseDate,
+    );
+  }
+
+  factory MovieModel.fromEntity(Movie entity) {
+    return MovieModel(
+      id: entity.id,
+      title: entity.title,
+      overview: entity.overview,
+      posterPath: entity.posterPath,
+      rating: entity.rating,
+      releaseDate: entity.releaseDate,
+    );
   }
 }
