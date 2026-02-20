@@ -38,6 +38,7 @@ dependencies:
   scratcher: ^2.5.0
   http: ^1.6.0
   flutter_html: ^3.0.0
+  flutter_svg: ^2.2.3
 
 dev_dependencies:
   flutter_test:
