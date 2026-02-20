@@ -27,6 +27,7 @@ class HomePage extends StatelessWidget {
             },
             child: Text('Go to Movie List'),
           ),
+          
         ],
       ),
     );

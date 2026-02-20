@@ -12,6 +12,7 @@ class MovieListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+		final colors = Theme.of(context).colorScheme;
     final datasource = MoviesRemoteDatasource(http.Client());
     final repository = MoviesRepositoryImpl(datasource);
     final getMovies = GetMovies(repository);
@@ -52,7 +53,7 @@ class MovieListPage extends StatelessWidget {
                       children: [
                         Text(
                           movie.name,
-                          style: Theme.of(context).textTheme.titleMedium,
+                          style: TextStyle(color: colors.secondary),
                         ),
                         const SizedBox(height: 8),
                         Html(data: movie.summary),
